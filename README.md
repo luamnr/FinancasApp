@@ -26,6 +26,7 @@ Um aplicativo mobile desenvolvido em React Native para ajudar no controle de fin
 - npm ou yarn
 - Android Studio (para Android)
 - Xcode (para IOS)
+- Emulador Configurado
 
 ### Instalação
 
@@ -34,4 +35,16 @@ Um aplicativo mobile desenvolvido em React Native para ajudar no controle de fin
 git clone https://github.com/luamnr/FinancasApp
 cd FinancasApp
 npm install
+```
+
+### Executar
+
+```bash
+emulator -list-avds
+emulator @{nome_da_avd}
+```
+
+```bash
+npm run android
+npm start
 ```
