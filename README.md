@@ -12,9 +12,8 @@ Um aplicativo mobile desenvolvido em React Native para ajudar no controle de fin
 
 ## 📋 Funcionalidades
 
-- ✅ Registrar receitas e despesas
-- ✅ Visualizar saldo atual
-- ✅ Acompanhar totais de entrada e saída
+- ✅ Registrar despesas
+- ✅ Visualizar gasto atual
 - ✅ Persistência de dados local
 - ✅ Interface intuitiva e responsiva
 
