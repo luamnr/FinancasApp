@@ -29,9 +29,15 @@ Um aplicativo mobile desenvolvido em React Native para ajudar no controle de fin
 
 ### Instalação
 
+
 1. Clone o repositório:
 ```bash
 git clone https://github.com/luamnr/FinancasApp
+```
+
+
+2. Entre e instale os pacotes
+```bash
 cd FinancasApp
 npm install
 ```
