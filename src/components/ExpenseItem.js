@@ -7,7 +7,10 @@ export default function ExpenseItem({ item, onEdit, onDelete }) {
         <View style={styles.row}>
             <View style={{ flex: 1 }}>
                 <Text style={styles.title}>{item.title}</Text>
-                <Text>{item.date} — R$ {Number(item.amount).toFixed(2)}</Text>
+                <Text>{item.date}</Text>
+                <Text style={{ color: item.type === 'renda' ? 'green' : 'red' }}>
+                    {item.type === 'renda' ? '+' : '-'} R$ {Number(item.amount).toFixed(2)}
+                </Text>
                 {item.freq && (
                     <Text>{item.freq} x {item.interval}</Text>
                 )}

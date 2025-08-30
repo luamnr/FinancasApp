@@ -18,17 +18,17 @@ const migrations = [
             await db.executeSql('DROP TABLE IF EXISTS expenses;');
         }
     },
-    // {
-    //     version: 2,
-    //     up: async (db) => {
+    {
+        version: 2,
+        up: async (db) => {
 
-    //         await db.executeSql('ALTER TABLE expenses ADD COLUMN category TEXT;');
-    //     },
-    //     down: async (db) => {
+            await db.executeSql('ALTER TABLE expenses ADD COLUMN type TEXT;');
+        },
+        down: async (db) => {
 
 
-    //     }
-    // }
+        }
+    }
 
 ];
 

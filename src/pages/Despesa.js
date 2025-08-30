@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Switch } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Switch, Select } from 'react-native';
 import { addExpense, updateExpense } from '../utils/expenses';
 import dayjs from 'dayjs';
 import 'react-native-get-random-values';
@@ -13,7 +13,7 @@ export default function AddEditExpense({ navigation, route }) {
     const [isRecurring, setIsRecurring] = useState(Boolean(editing?.freq));
     const [freq, setFreq] = useState(editing?.freq || 'mensal');
     const [interval, setFormInterval] = useState(editing?.interval ? String(editing.interval) : '1');
-
+    const [type, setType] = useState(editing?.type || 'despesa');
 
     useEffect(() => {
         if (editing) {
@@ -36,7 +36,8 @@ export default function AddEditExpense({ navigation, route }) {
                 amount: Number(amount),
                 date,
                 freq: isRecurring ? freq : null,
-                interval: isRecurring ? Number(interval) : 1
+                interval: isRecurring ? Number(interval) : 1,
+                type: type
             };
 
             console.log("Item a ser salvo:", item);
@@ -63,6 +64,25 @@ export default function AddEditExpense({ navigation, route }) {
             <Text>Título</Text>
             <TextInput style={styles.input} value={title} onChangeText={setTitle} />
 
+            <View style={{ padding: 12 }}>
+                <Text>Tipo:</Text>
+                <View style={styles.inlineContainer}>
+                    <TouchableOpacity
+                        style={[styles.button, type === 'despesa' && styles.active]}
+                        onPress={() => setType('despesa')}
+                    >
+                        <Text style={type === 'despesa' ? styles.activeText : styles.text}>Despesa</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[styles.button, type === 'renda' && styles.active]}
+                        onPress={() => setType('renda')}
+                    >
+                        <Text style={type === 'renda' ? styles.activeText : styles.text}>Receita</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <Text style={{ marginTop: 12 }}>Tipo selecionado: {type}</Text>
+            </View>
 
             <Text>Valor (R$)</Text>
             <TextInput style={styles.input} keyboardType="numeric" value={amount} onChangeText={setAmount} />
@@ -123,5 +143,18 @@ export default function AddEditExpense({ navigation, route }) {
 const styles = StyleSheet.create({
     container: { flex: 1, padding: 12 },
     input: { borderWidth: 1, borderColor: '#ddd', padding: 8, marginBottom: 8, borderRadius: 6 },
-    saveBtn: { marginTop: 12, backgroundColor: '#2b6cb0', padding: 12, alignItems: 'center', borderRadius: 6 }
+    saveBtn: { marginTop: 12, backgroundColor: '#2b6cb0', padding: 12, alignItems: 'center', borderRadius: 6 },
+    inlineContainer: { flexDirection: 'row', marginTop: 4 },
+    button: {
+        flex: 1,
+        paddingVertical: 8,
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 6,
+        marginHorizontal: 2,
+        alignItems: 'center'
+    },
+    active: { backgroundColor: '#4CAF50', borderColor: '#4CAF50' },
+    text: { color: '#000' },
+    activeText: { color: '#fff', fontWeight: '600' }
 });
